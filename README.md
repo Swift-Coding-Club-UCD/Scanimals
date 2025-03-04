@@ -1,1 +1,1 @@
-# Scandals
+# Scanimals
