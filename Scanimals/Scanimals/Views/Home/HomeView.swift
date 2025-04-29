@@ -8,7 +8,8 @@ import SwiftUI
 
 
 struct HomeView : View {
-    @StateObject private var viewModel = HomeViewModel()
+    @EnvironmentObject var viewModel: HomeViewModel
+
     
     var body: some View {
         // NavigationStack allows the user to tap on a view
