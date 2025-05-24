@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CollectionView: View {
     @StateObject private var viewModel = CollectionViewModel()
-
+    // data that can be shared to children views and used within its own view, local view only data
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
