@@ -12,6 +12,7 @@ struct ScanimalsApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(HomeViewModel())
         }
     }
 }

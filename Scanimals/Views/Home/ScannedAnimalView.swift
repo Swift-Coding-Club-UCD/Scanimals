@@ -14,11 +14,22 @@ struct ScannedAnimalView: View {
         VStack(spacing: 8) {
             Text(animal.name)
             
-            Image(animal.imageName)
-                .resizable()
-                .cornerRadius(12)
-                .frame(width: 300, height: 400)
-                .scaledToFill()
+            
+            if let uiImage = animal.image{
+                
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .cornerRadius(12)
+                    .frame(width: 300, height: 400)
+                    .scaledToFill()
+                
+            }else{
+                Image(animal.imageName)
+                    .resizable()
+                    .cornerRadius(12)
+                    .frame(width: 300, height: 400)
+                    .scaledToFill()
+            }
         }
         .padding()
     }
