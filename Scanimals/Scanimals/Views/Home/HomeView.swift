@@ -8,6 +8,7 @@ import SwiftUI
 
 
 struct HomeView : View {
+    // envobject, share data btw multiple views in this case the HomeViewModel to access the scannedItems array contianing animals
     @EnvironmentObject var viewModel: HomeViewModel
 
     
@@ -28,8 +29,8 @@ struct HomeView : View {
                         // Wrapping a view within a NavigationLink allows us to set a destination view for the wrapped view
                         // Here, the destination is our InfoView
                         // each item within the HomeViewModel is a ScannedAnimal which conforms to InfoView's animal parameter
-                        NavigationLink(destination: InfoView(animal: item)) {
-                            ScannedAnimalView(animal: item)
+                        NavigationLink(destination: InfoView(animal: item)) { //specify where to redirect the user when clicking on the image nav link
+                            ScannedAnimalView(animal: item) // image for this nav link
                         }
                         .buttonStyle(.plain)
                     }
@@ -44,4 +45,5 @@ struct HomeView : View {
 
 #Preview {
     HomeView()
+        .environmentObject(HomeViewModel())
 }

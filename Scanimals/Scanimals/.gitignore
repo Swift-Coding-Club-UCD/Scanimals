@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+
+# Xcode workspace and user data
+*.xcuserstate
+*.xcuserdata/
+*.xcuserdatad/
+*.xccheckout
+*.moved-aside
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.hmap
+*.ipa
+*/build/
+DerivedData/
+*.xcworkspace
+!default.xcworkspace
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+
+# CocoaPods
+Pods/
+
+# Sensitive config
+Config/Config.plist

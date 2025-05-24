@@ -14,6 +14,7 @@ struct ScannedAnimalView: View {
         VStack(spacing: 8) {
             Text(animal.name)
             
+            
             if let uiImage = animal.image{
                 
                 Image(uiImage: uiImage)
