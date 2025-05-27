@@ -4,43 +4,59 @@
 //
 //  Created by Adam Lee on 4/15/25.
 //
+import SwiftUI
 
 import SwiftUI
 
 struct CollectionView: View {
-    @StateObject private var viewModel = CollectionViewModel()
-    // data that can be shared to children views and used within its own view, local view only data
-    let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    
-    var body: some View {
-        NavigationStack {
-            ScrollView {
-                HStack(alignment: .top, spacing: 50) {
-                    VStack(spacing: 16) {
-                        ForEach(viewModel.leftColumn) { item in
-                            NavigationLink(destination: InfoView(animal: item)) {
-                                CompactAnimalView(animal: item)
-                                    .frame(maxWidth: 100)
-                            }
-                            .buttonStyle(.plain)
-                        }
-                    }
+    @EnvironmentObject private var homeVM: HomeViewModel
 
-                    VStack(spacing: 16) {
-                        ForEach(viewModel.rightColumn) { item in
-                            NavigationLink(destination: InfoView(animal: item)) {
-                                CompactAnimalView(animal: item)
-                                    .frame(maxWidth: 100)
-                            }
-                            .buttonStyle(.plain)
+    // Two flexible columns
+    private let columns = [
+        GridItem(.flexible(), spacing: 16),
+        GridItem(.flexible(), spacing: 16)
+    ]
+
+    var body: some View {
+        NavigationStack { //
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 16) {
+                    ForEach(homeVM.scannedItems) { animal in
+                        NavigationLink {
+                            InfoView(animal: animal)
+                        } label: {
+                            CompactAnimalView(animal: animal)
+                                .frame(height: 120)
                         }
+                        .buttonStyle(.plain)
                     }
                 }
-                .padding(.horizontal)
+                .padding()
             }
+            .navigationTitle("Collection") 
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
+}
+
+#Preview {
+    CollectionView()
+      .environmentObject({
+          let vm = HomeViewModel()
+          // Add sample data for preview if needed
+          // vm.scannedItems = [ ... ]
+          return vm
+      }())
+}
+
+#Preview {
+    CollectionView()
+      .environmentObject({
+          let vm = HomeViewModel()
+          vm.scannedItems = [
+            ScannedAnimal(name: "Lion", fact: "King of the jungle", image: UIImage(named:"lion")),
+            ScannedAnimal(name: "Elephant", fact: "Largest land mammal", image: UIImage(named:"elephant"))
+          ]
+          return vm
+      }())
 }

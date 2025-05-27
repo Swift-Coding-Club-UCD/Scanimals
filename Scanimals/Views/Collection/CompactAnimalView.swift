@@ -7,22 +7,35 @@
 import SwiftUI
 
 struct CompactAnimalView: View {
-    let animal: ScannedAnimal
+  let animal: ScannedAnimal
 
-    var body: some View {
-        VStack(spacing: 6) {
-            Text(animal.name)
-                .font(.subheadline)
-                .fontWeight(.semibold)
-            
-            Image(animal.imageName)
-                .resizable()
-                .scaledToFill()
-                .frame(height: 200)
-                .cornerRadius(10)
+  var body: some View {
+    VStack(spacing: 4) {
+      ZStack {
+        // background shape
+        RoundedRectangle(cornerRadius: 8)
+          .fill(Color.secondary.opacity(0.1))
+          .frame(width: 80, height: 80)
+
+        // real photo or placeholder
+        if let photo = animal.image {
+          Image(uiImage: photo)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(width: 80, height: 80)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+        } else {
+          Image("placeholder")
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(width: 80, height: 80)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
         }
-        .frame(width: 140)
-        .padding(4)
-        .cornerRadius(12)
+      }
+
+      Text(animal.name)
+        .font(.caption2)
+        .lineLimit(1)
     }
+  }
 }

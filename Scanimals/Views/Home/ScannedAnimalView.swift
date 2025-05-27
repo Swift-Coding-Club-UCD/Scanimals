@@ -9,29 +9,37 @@ import SwiftUI
 
 struct ScannedAnimalView: View {
     let animal: ScannedAnimal
-    
+
     var body: some View {
         VStack(spacing: 8) {
-            Text(animal.name)
-            
-            
-            if let uiImage = animal.image{
-                
-                Image(uiImage: uiImage)
-                    .resizable()
-                    .cornerRadius(12)
-                    .frame(width: 300, height: 400)
-                    .scaledToFill()
-                
-            }else{
-                Image(animal.imageName)
-                    .resizable()
-                    .cornerRadius(12)
-                    .frame(width: 300, height: 400)
-                    .scaledToFill()
+            // Photo or placeholder
+            ZStack {
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color.secondary.opacity(0.1))
+                    .frame(height: 200)
+
+                if let ui = animal.image {
+                    Image(uiImage: ui)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(height: 200)
+                        .clipped()
+                        .cornerRadius(12)
+                } else {
+                    Image("placeholder")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(height: 200)
+                        .clipped()
+                        .cornerRadius(12)
+                }
             }
+
+            // Name
+            Text(animal.name)
+                .font(.headline)
+                .lineLimit(1)
         }
-        .padding()
     }
 }
 

@@ -6,13 +6,30 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DF0AE3192DE572510084E885 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = DF0AE3182DE572510084E885 /* GoogleGenerativeAI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		DF4946AD2DAE37D400048A17 /* Scanimals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scanimals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DF0AE31A2DE572D30084E885 /* Exceptions for "Scanimals" folder in "Scanimals" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DF4946AC2DAE37D400048A17 /* Scanimals */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DF4946AF2DAE37D400048A17 /* Scanimals */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF0AE31A2DE572D30084E885 /* Exceptions for "Scanimals" folder in "Scanimals" target */,
+			);
 			path = Scanimals;
 			sourceTree = "<group>";
 		};
@@ -23,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF0AE3192DE572510084E885 /* GoogleGenerativeAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +83,7 @@
 			);
 			name = Scanimals;
 			packageProductDependencies = (
+				DF0AE3182DE572510084E885 /* GoogleGenerativeAI */,
 			);
 			productName = Scanimals;
 			productReference = DF4946AD2DAE37D400048A17 /* Scanimals.app */;
@@ -94,6 +113,9 @@
 			);
 			mainGroup = DF4946A42DAE37D400048A17;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DF0AE3172DE572510084E885 /* XCRemoteSwiftPackageReference "deprecated-generative-ai-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DF4946AE2DAE37D400048A17 /* Products */;
 			projectDirPath = "";
@@ -249,13 +271,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KX8CZ9R8Q3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Scanimals/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs access to the camera to take photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -276,13 +301,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KX8CZ9R8Q3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Scanimals/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs access to the camera to take photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,6 +348,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DF0AE3172DE572510084E885 /* XCRemoteSwiftPackageReference "deprecated-generative-ai-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google-gemini/deprecated-generative-ai-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DF0AE3182DE572510084E885 /* GoogleGenerativeAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF0AE3172DE572510084E885 /* XCRemoteSwiftPackageReference "deprecated-generative-ai-swift" */;
+			productName = GoogleGenerativeAI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DF4946A52DAE37D400048A17 /* Project object */;
 }
