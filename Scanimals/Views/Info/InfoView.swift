@@ -11,6 +11,8 @@ import SwiftUI
 struct InfoView: View {
     let animal: ScannedAnimal
     @StateObject private var viewModel: InfoViewModel
+    @EnvironmentObject var homeViewModel: HomeViewModel
+    @State private var showingFolderPicker = false
     
     init(animal: ScannedAnimal) {
         self.animal = animal
@@ -28,6 +30,15 @@ struct InfoView: View {
                         .frame(height: 250)
                         .cornerRadius(12)
                         .shadow(radius: 5)
+                        .contextMenu {
+                            if !homeViewModel.folders.isEmpty {
+                                Button {
+                                    showingFolderPicker = true
+                                } label: {
+                                    Label("Add to Collection", systemImage: "folder.badge.plus")
+                                }
+                            }
+                        }
                 }
                 
                 // Animal Name
@@ -51,6 +62,22 @@ struct InfoView: View {
             .padding()
         }
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            if !homeViewModel.folders.isEmpty {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showingFolderPicker = true
+                    } label: {
+                        Image(systemName: "folder.badge.plus")
+                    }
+                }
+            }
+        }
+        .sheet(isPresented: $showingFolderPicker) {
+            FolderPickerView(selectedFolderId: .constant(nil)) { folderId in
+                homeViewModel.addAnimalToFolder(animal: animal, folderId: folderId)
+            }
+        }
         .task {
             // Generate fact when view appears
             await viewModel.generateFact(for: animal.name)

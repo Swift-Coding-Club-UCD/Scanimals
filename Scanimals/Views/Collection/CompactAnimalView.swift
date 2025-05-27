@@ -15,11 +15,19 @@ struct CompactAnimalView: View {
                 .font(.subheadline)
                 .fontWeight(.semibold)
             
-            Image(animal.imageName)
-                .resizable()
-                .scaledToFill()
-                .frame(height: 200)
-                .cornerRadius(10)
+            if let uiImage = animal.image {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 200)
+                    .cornerRadius(10)
+            } else {
+                Image(animal.imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 200)
+                    .cornerRadius(10)
+            }
         }
         .frame(width: 140)
         .padding(4)
