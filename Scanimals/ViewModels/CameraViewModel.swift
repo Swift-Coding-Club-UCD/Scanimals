@@ -63,26 +63,36 @@ final class CameraViewModel: ObservableObject {
     private func process(image: UIImage) async {
         self.classificationLabel = "Processing..." // Already on main actor
         do {
-            let name = try await mlService.classify(image)
-            let fact = try await mlService.generateFact(for: name)
+            let rawName = try await mlService.classify(image) // e.g., "switch, electric switch, electrical switch"
 
+            // 1. Process the name: Take the first component and trim whitespace
+            var finalName = rawName
+            if let firstComponent = rawName.split(separator: ",").first {
+                finalName = String(firstComponent).trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+
+            // 2. Capitalize the first letter
+            if !finalName.isEmpty {
+                finalName = finalName.prefix(1).uppercased() + finalName.dropFirst()
+            }
+            // Now 'finalName' should be something like "Switch"
+
+            // Use the processed 'finalName' to generate the fact
+            let fact = try await mlService.generateFact(for: finalName)
+            
             let scannedAnimal = ScannedAnimal(
-                name: name,
+                name: finalName, // Use the cleaned and capitalized name
                 fact: fact,
                 image: image
             )
+            
+            onAnimalScanned?(scannedAnimal)
 
-            // This callback is used by CameraView to append to its NavigationPath
-            onAnimalScanned?(scannedAnimal) //
-
-            // If CameraView's path.append() is the sole navigation trigger,
-            // self.scannedAnimalForNavigation might not be strictly needed for CameraView's flow.
-            // However, clearAndResetState() correctly nullifies it.
-            self.scannedAnimalForNavigation = scannedAnimal //
-
+            self.scannedAnimalForNavigation = scannedAnimal
+            
         } catch {
-            self.errorMessage = error.localizedDescription //
-            self.classificationLabel = "Error processing" //
+            self.errorMessage = error.localizedDescription
+            self.classificationLabel = "Error processing"
         }
     }
 
