@@ -32,6 +32,8 @@ struct CameraView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     // state to store the current animal name
     @State private var currentAnimalName: String = ""
+    @State private var showingFolderPicker = false
+    @State private var selectedFolderId: UUID?
 
     var body: some View {
         VStack {
@@ -63,6 +65,13 @@ struct CameraView: View {
                     .onChange(of: photoItem) { _ in loadImage() }
             }
             
+            // Add to Collection button
+            if !classificationLabel.contains("No image selected") && !classificationLabel.contains("Failed") {
+                Button("Add to Collection") {
+                    showingFolderPicker = true
+                }
+                .padding()
+            }
         }
         // sheet is a SwiftUI view that allows you to present a modal view
         // isPresented is a binding to the showingCamera state variable, which is used to control whether the camera view is displayed
@@ -71,6 +80,19 @@ struct CameraView: View {
         // selectedImage is the binding to the selectedImage state variable, which is used to store the selected photo
         .sheet(isPresented: $showingCamera, onDismiss: classifySelectedImage) {
             InCameraView(selectedImage: $selectedImage)
+        }
+        .sheet(isPresented: $showingFolderPicker) {
+            FolderPickerView(selectedFolderId: $selectedFolderId, onSelect: { folderId in
+                if let image = selectedImage {
+                    let animal = ScannedAnimal(
+                        name: classificationLabel,
+                        imageName: "",
+                        fact: "",
+                        image: image
+                    )
+                    homeViewModel.addAnimalToFolder(animal: animal, folderId: folderId)
+                }
+            })
         }
     }
     
@@ -163,12 +185,12 @@ struct CameraView: View {
              image: image   // store the real UIImage
          )
 
-         homeViewModel.scannedItems.insert(newAnimal, at: 0)
+         homeViewModel.addScannedAnimal(newAnimal)
      }
     
 }
 
 #Preview {
     ContentView()
-        .environmentObject(HomeViewModel())  // ✅ ADD THIS
+        .environmentObject(HomeViewModel())  //  ADD THIS
 }

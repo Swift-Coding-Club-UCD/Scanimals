@@ -6,9 +6,24 @@
 //
 
 import SwiftUI
-// App follows the (MVVM) - Model-View-ViewModel for app development management
+import FirebaseCore
+import FirebaseFirestore
+
 @main
 struct ScanimalsApp: App {
+    init() {
+        FirebaseApp.configure()
+        
+        // Configure Firestore settings
+        let db = Firestore.firestore()
+        let settings = db.settings
+        settings.isPersistenceEnabled = true
+        settings.cacheSizeBytes = FirestoreCacheSizeUnlimited
+        db.settings = settings
+        
+        print("Firebase initialized successfully")
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
