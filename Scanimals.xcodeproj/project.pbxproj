@@ -6,13 +6,30 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DF20B3542DE68830005F9EFB /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = DF20B3532DE68830005F9EFB /* GoogleGenerativeAI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		DF4946AD2DAE37D400048A17 /* Scanimals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scanimals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DF20B3552DE68849005F9EFB /* Exceptions for "Scanimals" folder in "Scanimals" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DF4946AC2DAE37D400048A17 /* Scanimals */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DF4946AF2DAE37D400048A17 /* Scanimals */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DF20B3552DE68849005F9EFB /* Exceptions for "Scanimals" folder in "Scanimals" target */,
+			);
 			path = Scanimals;
 			sourceTree = "<group>";
 		};
@@ -23,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF20B3542DE68830005F9EFB /* GoogleGenerativeAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +83,7 @@
 			);
 			name = Scanimals;
 			packageProductDependencies = (
+				DF20B3532DE68830005F9EFB /* GoogleGenerativeAI */,
 			);
 			productName = Scanimals;
 			productReference = DF4946AD2DAE37D400048A17 /* Scanimals.app */;
@@ -94,6 +113,9 @@
 			);
 			mainGroup = DF4946A42DAE37D400048A17;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DF20B3522DE68830005F9EFB /* XCRemoteSwiftPackageReference "deprecated-generative-ai-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DF4946AE2DAE37D400048A17 /* Products */;
 			projectDirPath = "";
@@ -251,6 +273,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KX8CZ9R8Q3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -278,6 +301,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KX8CZ9R8Q3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -320,6 +344,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DF20B3522DE68830005F9EFB /* XCRemoteSwiftPackageReference "deprecated-generative-ai-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google-gemini/deprecated-generative-ai-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DF20B3532DE68830005F9EFB /* GoogleGenerativeAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF20B3522DE68830005F9EFB /* XCRemoteSwiftPackageReference "deprecated-generative-ai-swift" */;
+			productName = GoogleGenerativeAI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DF4946A52DAE37D400048A17 /* Project object */;
 }
